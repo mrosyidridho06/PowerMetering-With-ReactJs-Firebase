@@ -40,15 +40,15 @@ export default function Signup() {
         </div>
           <div className="my-5 text-sm">
             <label className="block text-black">Email</label>
-            <input type="text" autoFocus ref={emailRef} id="email" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
+            <input type="text" autoFocus ref={emailRef} id="email" className="rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-600 px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
           </div>
           <div className="my-5 text-sm">
           <label className="block text-black">Password</label>
-          <input type="text" ref={passwordRef} autoFocus id="password" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
+          <input type="password" ref={passwordRef} autoFocus  id="password" className="rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-600  px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
           </div>
           <div className="my-5 text-sm">
           <label className="block text-black">Konfirmasi Password</label>
-          <input type="text" ref={passwordConfirmRef} autoFocus id="confirmpassword" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
+          <input type="password" ref={passwordConfirmRef} autoFocus id="confirmpassword" className="rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-600 px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
           </div>
           <button disabled={loading} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Daftar</button>
         <h5 className="mt-4 text-xs text-center font-light text-gray-400">Already have account? <Link to="/login">Login</Link></h5>

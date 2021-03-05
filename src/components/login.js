@@ -28,26 +28,26 @@ export default function Login() {
     }
     return(
         <>
-        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md object-center">
+        <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md object-center rounded">
           <div className="py-8 px-8 rounded-xl">
             <form onSubmit={handleSubmit}>
             {/* {error && <Alert>{error}</Alert>} */}
               <div className="object-none px-28">
                 <img src={logo} className="min-h-full max-h-24 mx-auto" />
               </div>
-              <div className="my-5 text-sm">
+              <div className="my-5 text-sm focus-within:text-gray-600">
                 <label className="block text-black">Email</label>
-                <input type="text" autoFocus ref={emailRef} id="email" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
+                <input type="text" autoFocus ref={emailRef} id="email" className="rounded-md px-4 py-3 mt-3 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-100 w-full" required></input>
               </div>
-              <div className="my-5 text-sm">
+              <div className="my-5 text-sm focus-within:text-gray-600">
                 <label className="block text-black">Password</label>
-                <input type="text" ref={passwordRef} autoFocus id="password" className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" required></input>
+                <input ref={passwordRef} autoFocus type="password" id="password" className="rounded-md px-4 py-3 mt-3 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-100 w-full" required></input>
               </div>
               <div className="text-sm pb-2 text-right font-medium text-indigo-600 hover:text-indigo-500">
-                Forgot your password?
+                <Link to="/reset">Forgot your password?</Link>
               </div>
-              <button disabled={loading} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Masuk</button>
-            <h5 className="mt-4 text-xs text-center font-light text-gray-400">Not Have Account? <Link to="/signup">Signup</Link></h5>
+              <button disabled={loading} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm  font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Masuk</button>
+            <h5 className="mt-4 text-xs text-center font-light text-gray-400">Not have an account? <Link to="/signup">Sign Up</Link></h5>
             </form>
           </div>
         </div>

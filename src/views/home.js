@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import logo from "../assets/pi.png";
+import pie from "../assets/pie-chart.png"
+import lamp from "../assets/smart.png"
 import {useAuth} from "../config/auth";
 
   
@@ -21,29 +23,27 @@ export default function  Home() {
   }
   return (
     <>
-      <nav className="flex justify-between bg-gray-200 p-5">
-        <div>
-          <Link to="/"><img src={logo} alt='Logo'className="rounded-md inline w-8 h-5 text-white"></img> Energy Monitoring</Link>
+      <nav className="flex justify-between bg-gray-400 p-5">
+        <div className="text-white font-medium">
+          <Link to="/"><img src={logo} alt='Logo'className="rounded-md inline w-9 h-6 text-white"></img> Energy Monitoring </Link>
         </div>
         <ul className="flex flex-row">
-          <li className="pr-5">About</li>
-          <li><button onClick={handleLogout}>Sign out</button></li>
+          <li className="pr-5 text-white font-medium">About</li>
+          <li className="text-white font-medium"><button onClick={handleLogout}>Sign out</button></li>
         </ul>
       </nav>
-      <h1 className="text-base text-2xl text-center font-bold pt-12">Energy Monitoring & Home Automation</h1>
-      <div className="container my-12 mx-auto px-4 md:px-12">
-        <div className="flex flex-wrap lg:-mx-4">
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-          <div className="max-w-xs rounded overflow-hidden shadow-lg">
-            <Link to="/dashboard"><img src={logo} className="w-full"></img> Monitoring </Link>
-          </div>
-          <div className="max-w-xs rounded overflow-hidden shadow-lg">
-            <img src={logo} className="w-full"></img>
-          </div>
+      <h1 className="text-base text-2xl text-center font-bold pt-6">Energy Monitoring & Home Automation</h1>
+      <div className="container my-8 mx-auto sm:px-20 md:px-12 lg:pt-16 md:pt-16 ">
+        <div className="content-center flex flex-wrap mx-auto md:px-48 lg:grid-cols-2 sm:px-3 px-24 sm:gap-32 md:gap-22">
+            <div className="max-w-xs text-black font-medium text-center bg-opacity-0">
+              <Link to="/dashboard"><img src={pie} className="w-full sm:h-5/6"></img> Monitoring </Link>
+            </div>
+            <div className="max-w-xs text-black font-medium text-center">
+              <Link to="/dashboard"><img src={lamp} className="w-full sm:h-5/6"></img> Home Automation </Link>
           </div>
         </div>
       </div>
-      <footer className="text-center"><p className="text-gray-300">Copyright CV. Plannet Intelligent</p></footer>
+      <footer className="text-center md:pt-16"><p className="text-gray-300">Copyright CV. Plannet Intelligent</p></footer>
     </>
   )
 }
