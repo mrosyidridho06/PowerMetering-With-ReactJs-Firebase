@@ -4,12 +4,15 @@ import logo from "../assets/pi.png";
 import pie from "../assets/pie-chart.png"
 import lamp from "../assets/smart.png"
 import {useAuth} from "../config/auth";
+import app from "../config/fire"
 
   
 export default function  Home() {
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
+
+  var user = app.auth().currentUser.displayName
 
   async function handleLogout() {
     setError("")
@@ -28,6 +31,7 @@ export default function  Home() {
           <Link to="/"><img src={logo} alt='Logo'className="rounded-md inline w-9 h-6 text-white"></img> Energy Monitoring </Link>
         </div>
         <ul className="flex flex-row">
+          <li className="pr-5 text-white font-medium">Welcome {user}</li>
           <li className="pr-5 text-white font-medium">About</li>
           <li className="text-white font-medium"><button onClick={handleLogout}>Sign out</button></li>
         </ul>
@@ -39,11 +43,11 @@ export default function  Home() {
               <Link to="/dashboard"><img src={pie} className="w-full sm:h-5/6"></img> Monitoring </Link>
             </div>
             <div className="max-w-xs text-black font-medium text-center">
-              <Link to="/dashboard"><img src={lamp} className="w-full sm:h-5/6"></img> Home Automation </Link>
+              <Link to="/rumah"><img src={lamp} className="w-full sm:h-5/6"></img> Home Automation </Link>
           </div>
         </div>
       </div>
-      <footer className="text-center md:pt-16"><p className="text-gray-300">Copyright CV. Plannet Intelligent</p></footer>
+      <footer className="text-center md:pt-16"><p className="text-gray-500">Copyright CV. Plannet Intelligent</p></footer>
     </>
   )
 }

@@ -1,11 +1,17 @@
 import * as React from "react";
 import '../style/main.css';
+import Navb from '../components/navbar'
 
-import { render } from "react-dom";
 
 function HomeAuto() {
     return (
-        'Home Automation'
+        <>
+        <Navb />
+        <div className="container">
+        Rumah
+        </div>
+        </>
+        
     );
 }
 export default HomeAuto;

@@ -1,8 +1,13 @@
 import React, { useRef, useState} from "react";
-import {useAuth} from '../config/auth'
+import {SignInWithGoogle, useAuth} from '../config/auth'
 import {Link, useHistory} from 'react-router-dom'
-import {Alert} from 'react-alert'
+import Alert from '../components/Alert'
 import logo from '../assets/pi.png'
+import Gicon from '../assets/google-icon.svg'
+import app from "../config/fire";
+import {IconButton, Button} from 'rsuite'
+
+
 
 export default function Login() {
     const emailRef = useRef()
@@ -31,7 +36,7 @@ export default function Login() {
         <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md object-center rounded">
           <div className="py-8 px-8 rounded-xl">
             <form onSubmit={handleSubmit}>
-            {/* {error && <Alert>{error}</Alert>} */}
+            {error && <Alert>{error}</Alert>}
               <div className="object-none px-28">
                 <img src={logo} className="min-h-full max-h-24 mx-auto" />
               </div>
@@ -47,11 +52,17 @@ export default function Login() {
                 <Link to="/reset">Forgot your password?</Link>
               </div>
               <button disabled={loading} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm  font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Masuk</button>
+              <div className="text-xs text-center pt-2">
+                <div className="pb-3">or login with</div>
+                <button className="hover" onClick={SignInWithGoogle}><img src={Gicon} className="h-6 w-6 fill-current"></img></button>
+              </div>
+              
             <h5 className="mt-4 text-xs text-center font-light text-gray-400">Not have an account? <Link to="/signup">Sign Up</Link></h5>
             </form>
+            
           </div>
         </div>
-        <p className="text-gray-500 text-center text-md pb-0">Copyright CV. Planet Intelligent 2021</p>
+        <p className="text-gray-500 text-center text-md pb-0">Copyright &copy; CV. Planet Intelligent 2021</p>
     </>
     )
     }

@@ -1,15 +1,18 @@
 import React from "react";
 import '../style/main.css';
+import Navb from '../components/navbar'
+import chartCospi from '../charts/chartCospi'
 
-class Cospi extends React.Component{
-    render(){
-        return
-            <>
-                <div className="container">
-                Cospi
-                </div>
-            </>
-    }
+
+export default function cospi() {
+    return (
+        <>
+        <Navb />
+        <div className="container">
+            Cospi
+            <chartCospi />
+        </div>
+        </>
+    );
 }
 
-export default Cospi;
