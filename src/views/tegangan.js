@@ -15,7 +15,7 @@ export default class tegangan extends Component {
         datasets: [
           {
             label: 'Tegangan',
-            data: [99, 222]
+            data: [99, 222, 44, 55]
           }
         ]
       },
@@ -32,6 +32,7 @@ export default class tegangan extends Component {
           <canvas id='myChart' ref={this.chartRef}></canvas>
         </div>
       </div>
+      <footer className="text-center"><p className="text-gray-500">Copyright &copy; CV. Plannet Intelligent</p></footer>
       
       </>
     )

@@ -27,9 +27,9 @@ export default function  Home() {
   return (
     <>
       <nav className="flex justify-between bg-gray-400 p-5">
-        <div className="text-white font-medium">
-          <Link to="/"><img src={logo} alt='Logo'className="rounded-md inline w-9 h-6 text-white"></img> Energy Monitoring </Link>
-        </div>
+          <Link to="/">
+            <img src={logo} alt='Logo'className="rounded-md inline w-9 h-6 text-white"></img>
+          </Link>
         <ul className="flex flex-row">
           <li className="pr-5 text-white font-medium">Welcome {user}</li>
           <li className="pr-5 text-white font-medium">About</li>
@@ -47,7 +47,7 @@ export default function  Home() {
           </div>
         </div>
       </div>
-      <footer className="text-center md:pt-16"><p className="text-gray-500">Copyright CV. Plannet Intelligent</p></footer>
+      <footer className="text-center md:pt-16"><p className="text-gray-500">Copyright &copy; CV. Plannet Intelligent</p></footer>
     </>
   )
 }

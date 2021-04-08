@@ -95,12 +95,13 @@ export default class cospi extends Component {
     return (
       <>
       <Navb />
-      <div className="container p-5 h-2/4 w-2/4">
+      <div className="container p-5 md:h-2/4 md:w-2/4">
         <div>
           <canvas id='myChart' ref={this.chartRef}></canvas>
         </div>
         <div className="text-indigo-900 text-2xl text-center font-serif">Ini Jam {this.state.date.toLocaleTimeString()}</div>
       </div>
+      <footer className="text-center md:pt-52"><p className="text-gray-500">Copyright &copy; CV. Plannet Intelligent</p></footer>
       </>
     )
   }

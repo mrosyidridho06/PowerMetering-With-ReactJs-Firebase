@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^0.3.2",
     "@react-firebase/auth": "^0.2.10",
     "@react-firebase/database": "^0.3.11",
     "@reactchartjs/react-chart.js": "^1.0.0-rc.3",
