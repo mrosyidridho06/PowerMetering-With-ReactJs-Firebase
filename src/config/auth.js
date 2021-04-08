@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import {auth} from "./fire";
 import app from '../config/fire'
 import firebase from 'firebase'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 
 const AuthContext = React.createContext()
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
   }
 
   function nama(name) {
-    return currentUser.displayName(name)
+    return auth.displayName(name)
   }
 
 
@@ -51,6 +51,7 @@ export function AuthProvider({ children }) {
   function updateEmail(email) {
     return currentUser.updateEmail(email)
   }
+
   function verifyEmail(email) {
     return currentUser.sendEmailVerification(email);
   }

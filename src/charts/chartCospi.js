@@ -1,46 +1,42 @@
-import React from 'react'
-import {Line} from '@reactchartjs/react-chart.js'
+import React, {Component} from 'react'
+import Chart from 'chart.js';
+import Navb from '../components/navbar'
 
-export default function chartCospi() {
-    const data = {
-        labels: ['1', '2', '3', '4', '5', '6'],
+export default class chartCospi extends Component {
+  chartRef = React.createRef();
+
+  componentDidMount(){
+    const myChartRef = this.chartRef.current.getContext('2d');
+
+    new Chart(myChartRef, {
+      type: 'line',
+      data: {
+        labels: ['Hari', 'Waktu'],
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            fill: false,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgba(255, 99, 132, 0.2)',
-          },
-        ],
+            label: 'Arus',
+            data: [99, 222]
+          }
+        ]
+      },
+      options: {
       }
+    })
+  }
+  render(){
+    return (
+      <>
+      <Navb />
+      <div className="container">
+        <div>
+          <canvas id='myChart' ref={this.chartRef}></canvas>
+        </div>
+      </div>
       
-      const options = {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
-        },
-      }
-      
-      const LineChart = () => (
-        <>
-          <div className='header'>
-            <h1 className='title'>Line Chart</h1>
-            <div className='links'>
-              <a
-                className='btn btn-gh'
-                href='https://github.com/reactchartjs/react-chartjs-2/blob/react16/example/src/charts/Line.js'
-              >
-                Github Source
-              </a>
-            </div>
-          </div>
-          <Line data={data} options={options} />
-        </>
-      )
+      </>
+    )
+  }
 }
+
+
+

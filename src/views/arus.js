@@ -1,17 +1,39 @@
-import * as React from "react";
-import '../style/main.css';
+import React, {Component} from 'react'
+import Chart from 'chart.js';
 import Navb from '../components/navbar'
 
-import { render } from "react-dom";
+export default class arus extends Component {
+  chartRef = React.createRef();
 
-function Arus() {
+  componentDidMount(){
+    const myChartRef = this.chartRef.current.getContext('2d');
+
+    new Chart(myChartRef, {
+      type: 'line',
+      data: {
+        labels: ['Hari', 'Waktu'],
+        datasets: [
+          {
+            label: 'Arus',
+            data: [99, 222]
+          }
+        ]
+      },
+      options: {
+      }
+    })
+  }
+  render(){
     return (
-        <>
-        <Navb />
-        <div className="container">
-            Arus
+      <>
+      <Navb />
+      <div className="container">
+        <div>
+          <canvas id='myChart' ref={this.chartRef}></canvas>
         </div>
-        </>
-    );
+      </div>
+      
+      </>
+    )
+  }
 }
-export default Arus;

@@ -1,6 +1,6 @@
-import React, { useRef, useState} from "react";
+import React, { useEffect, useRef, useState, useContext} from "react";
 import {SignInWithGoogle, useAuth} from '../config/auth'
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory, Redirect} from 'react-router-dom'
 import Alert from '../components/Alert'
 import logo from '../assets/pi.png'
 import Gicon from '../assets/google-icon.svg'
@@ -32,6 +32,7 @@ export default function Login() {
       setLoading(false)
     }
     return(
+      
         <>
         <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md object-center rounded">
           <div className="py-8 px-8 rounded-xl">
@@ -51,7 +52,7 @@ export default function Login() {
               <div className="text-sm pb-2 text-right font-medium text-indigo-600 hover:text-indigo-500">
                 <Link to="/reset">Forgot your password?</Link>
               </div>
-              <button disabled={loading} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm  font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Masuk</button>
+              <button disabled={loading} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm  font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
               <div className="text-xs text-center pt-2">
                 <div className="pb-3">or login with</div>
                 <button className="hover" onClick={SignInWithGoogle}><img src={Gicon} className="h-6 w-6 fill-current"></img></button>
