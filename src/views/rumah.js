@@ -9,17 +9,41 @@ import tv from '../assets/television.png'
 import kipas3 from '../assets/fan (1).png'
 import lampu2 from '../assets/chandelier.png'
 import lampu3 from '../assets/illumination.png'
+import {Switch} from '@headlessui/react'
 
 
 export default class Rumah extends Component {
+
     constructor(props){
         super(props);
         this.handleClick1On = this.handleClick1On.bind(this);
         var fire1 = firebase.database().ref('PowerMetering/Home-Automation/Relay1')
-        this.state = {
-            SW1: fire1
-            };
+        this.state = ({
+            SW1: false,
+            sw2On:"",
+            sw2Off:""
+            });
+        this.handlesw2On = this.handlesw2On.bind(this);
+        this.handlesw2Off = this.handlesw2Off.bind(this);
     }
+
+    handlesw2On(){
+        let fire = firebase.database().ref("PowerMetering/Home-Automation/Relay2");
+        this.setState( state => ({
+            sw2On: fire.set('ON'),
+            sw2On: !state.sw2Off
+        })
+        )
+    }
+    handlesw2Off(){
+        let fire1 = firebase.database().ref("PowerMetering/Home-Automation/Relay2");
+        this.setState( state =>({
+            sw2Off: fire1.set("OFF"),
+            sw2Off: !state.sw2On
+        })
+        )
+    }
+
 
     handleClick1On(){
         var fire1 = firebase.database().ref('PowerMetering/Home-Automation/Relay1')
@@ -48,20 +72,41 @@ return (
                             <footer className="flex justify-center">
                                 <span
                                     role="checkbox"
-                                    aria-checked={this.SW1}
+                                    aria-checked={this.sw2On}
                                     tabIndex="0"
-                                    onClick={this.handleClick1On}
-                                    className={`${this.state.SW1 ? 'bg-indigo-600' : 'bg-gray-200'} relative inline-block flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline`}
+                                    onClick={this.handlesw2On}
+                                    className={`${this.state.sw2On ? 'bg-indigo-600' : 'bg-gray-200'} relative inline-block flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline`}
                                 >
                                     <span
                                         aria-hidden="true"
-                                        aria-checked={this.state.SW1}
-                                        className={`${this.state.SW1? 'translate-x-5' : 'translate-x-0'} inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200`}
+                                        aria-checked={this.handlesw2Off}
+                                        className={`${this.state.sw2Off? 'translate-x-5' : 'translate-x-0'} inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200`}
                                     ></span>
                                 </span>
                             </footer>
                         </article>
                     </div>
+                    {/* <div className="flex items-center justify-center p-12">
+                        <div className="w-full max-w-xs mx-auto">
+                            <Switch.Group as="div" className="flex items-center space-x-4">
+                                <Switch.Label>Enable notifications</Switch.Label>
+                                <Switch
+                                    as="button"
+                                    checked={this.handlesw2On}
+                                    onChange={this.state.sw2On}
+                                    className={`${this.state.sw2On ? "bg-indigo-600" : "bg-gray-200"
+                                        } relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:shadow-outline`}
+                                >
+                                    {({ checked }) => (
+                                        <span
+                                            className={`${checked ? "translate-x-5" : "translate-x-0"
+                                                } inline-block w-5 h-5 transition duration-200 ease-in-out transform bg-white rounded-full`}
+                                        />
+                                    )}
+                                </Switch>
+                            </Switch.Group>
+                        </div>
+                    </div> */}
                     {/* <div className="my-1 px-12 relative">
                         <article className="bg-transparent justify-center">
                             <img alt="Placeholder" className="block h-32 w-32" src={lampu}></img>
