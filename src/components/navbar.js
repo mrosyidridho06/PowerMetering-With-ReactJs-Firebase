@@ -15,8 +15,6 @@ export default function Navb() {
   var foto = app.auth().currentUser.photoURL
   var id = app.auth().currentUser.uid
 
-  console.log(foto)
-  console.log(id)
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -66,33 +64,31 @@ export default function Navb() {
                 <div className="hidden md:block ">
                   <div className="inline-flex pl-64 justify-items-end items-center">
                     <Link to="/dashboard">
-                      <a className="hover:bg-gray-700 hover:text-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium"> Dashboard </a>
+                      <ul className="hover:bg-gray-700 hover:text-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium"> Dashboard </ul>
                     </Link>
 
                     <Link to="/cospi">
-                    <a
-                      href="#"
+                    <ul
                       className="hover:bg-gray-700 hover:text-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Cospi
-                    </a>
+                    </ul>
                     </Link>
 
                     <Link to="/arus">
-                    <a
-                      href="#"
+                    <ul
                       className="text-white hover:bg-gray-700 hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Arus
-                    </a>
+                    </ul>
                     </Link>
                   
                     <Link to="/tegangan">
-                    <a
+                    <ul
                       className="text-white hover:bg-gray-700 hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Tegangan
-                    </a>
+                    </ul>
                     </Link>
                     
                       <div className="relative pl-96">
@@ -102,19 +98,9 @@ export default function Navb() {
                               <span className="rounded-md shadow-sm">
                                 <Menu.Button className="g-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white">
                                   <span>
-                                    <img className="rounded-full block h-8 w-8" src={foto}/>
+                                    <img className="inline-block h-6 w-6 rounded-full ring-2 ring-white" src={foto}/>
                                   </span>
-                                  <svg
-                                    className="w-8 h-8"
-                                    viewBox="0 0 20 20"
-                                    fill="white"
-                                  >
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                      clipRule="evenodd"
-                                    />
-                                  </svg>
+                                  <svg className="w-4 h-4 items-center" fill="white" stroke="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </Menu.Button>
                               </span>
 

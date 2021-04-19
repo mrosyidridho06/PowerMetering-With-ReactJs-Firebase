@@ -2,16 +2,13 @@ import React, {Component} from 'react'
 import Chart from 'chart.js';
 import Navb from '../components/navbar'
 import firebase from 'firebase'
-
+let myLineChart;
 
 export default class cospi extends Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
-    // this.setCospiDat = this.setCospiDat.bind(this);
     this.state = {
-      datae: [],
-      dateCospi: [],
       date: new Date()
     }
     
@@ -25,72 +22,97 @@ export default class cospi extends Component {
     });
   }
   
-  
-  componentDidMount() {
-    const myChartRef = this.chartRef.current.getContext('2d');
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+  componentDidMount(){
+      const myChartRef = this.chartRef.current.getContext('2d');
+      this.timerID = setInterval(
+        () => this.tick(),
+        1000
+      );
+
+      document.title = "Cospi"
 
 
-    var dataCos = [];
-    var red = firebase.database().ref('PowerMetering/Home-Monitoring/Power-Factor');
-    red.on('value', function (snapshot) {
-        var record = snapshot.val()
-        dataCos.push(record)
+      var dataCos = [];
+      var red = firebase.database().ref('PowerMetering/Home-Monitoring/Watt').child('data1');
+      red.on('value', function (snapshot) {
+          var record = snapshot.val()
+          dataCos.push(record)    
+      console.log(record)
 
-      
-    //   // console.log(snapshot.val())     
-    console.log(dataCos)
-
-    new Chart(myChartRef, {
-      type: 'line',
-        values:'Cospi',
-        data: {
-            labels: ['Cospi'],
-            datasets: [{
-                label:'Cospi',
-                data: dataCos,
-                backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'],
-                borderColor: [
-                'rgba(255, 99, 132, 1)'],
-                borderWidth: 1
-            }]
-        },
-            options: {
-                scales:{
-                  y:{
-                    beginAtZero: true
+      new Chart(myChartRef, {
+        type: 'line',
+          values:'Cospi',
+          data: {
+              labels: ['Cospi'],
+              datasets: [{
+                  label:'Cospi',
+                  data: dataCos,
+                  backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)'],
+                  borderColor: [
+                  'rgba(255, 99, 132, 1)'],
+                  borderWidth: 1
+              }]
+          },
+              options: {
+                  scales:{
+                    y:{
+                      beginAtZero: true
+                    }
+                  },
+                  xAxes: [{
+                    type: "time",
+                    time: {
+                      unit: 'hour',
+                      unitStepSize: 0.5,
+                      round: 'hour',
+                      tooltipFormat: "h:mm:ss a",
+                      displayFormats: {
+                        hour: 'MMM D, h:mm A'
+                      }
+                    }
+                  }],
+                  responsive:true,
+                  title: {
+                      display: true,
+                      text: 'Chart Cospi'
                   }
-                },
-                responsive:true,
-                title: {
-                    display: true,
-                    text: 'Chart Cospi'
                 }
-                // tooltips: {
-                //     mode: 'index',
-                //     intersect: true
-                // },
-                // annotation: {
-                //     annotations: [{
-                //     type: 'line',
-                //     scaleID: 'y-0',
-                //     value: 5,
-                //     borderColor: 'rgb(75, 192, 192)',
-                //     borderWidth: 4,
-                //     label: {
-                //         enabled: false,
-                //         content: 'Test label'
-                //     }
-                //     }]
-                // },
-              }
+      })
     })
-  })
-  }
+    
+  //  buildChart = () => {
+  //   const myChartRef = this.chartRef.current.getContext("2d");
+  //   const { data, average, labels } = this.props;
+
+  //   if (typeof myLineChart !== "undefined") myLineChart.destroy();
+
+  //   myLineChart = new Chart(myChartRef, {
+  //       type: "line",
+  //       data: {
+  //           //Bring in data
+  //           labels: labels,
+  //           datasets: [
+  //               {
+  //                   label: "Sales",
+  //                   data: data,
+  //                   fill: false,
+  //                   borderColor: "#6610f2"
+  //               },
+  //               {
+  //                   label: "National Average",
+  //                   data: average,
+  //                   fill: false,
+  //                   borderColor: "#E0E0E0"
+  //               }
+  //           ]
+  //       },
+  //       options: {
+  //           //Customize chart options
+
+  //       }
+  //   });
+   }
   render(){
     return (
       <>
@@ -101,7 +123,7 @@ export default class cospi extends Component {
         </div>
         <div className="text-indigo-900 text-2xl text-center font-serif">Ini Jam {this.state.date.toLocaleTimeString()}</div>
       </div>
-      <footer className="text-center md:pt-52"><p className="text-gray-500">Copyright &copy; CV. Plannet Intelligent</p></footer>
+      <footer className="text-center md:pt-52"><p className="text-gray-500">Copyright &copy; 2021 PT. Ruang Cipta Teknologi</p></footer>
       </>
     )
   }

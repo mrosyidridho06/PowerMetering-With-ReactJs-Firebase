@@ -16,6 +16,7 @@ import chartCospi from '../charts/chartCospi'
 import dashboard from '../views/dashboard';
 import Cos from '../views/cos'
 import tescos from '../views/tescos';
+import Account from '../views/account';
 
 const App = () => {
   return(
@@ -35,6 +36,7 @@ const App = () => {
           <PrivateRoute exact path="/chart" component={chartCospi} />
           <PrivateRoute exact path="/cos" component={Cos} />
           <PrivateRoute exact path="/tescos" component={tescos} />
+          <PrivateRoute exact path="/account" component={Account} />
         </Switch>
       </AuthProvider>
     </Router>

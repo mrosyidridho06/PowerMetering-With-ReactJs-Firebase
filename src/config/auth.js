@@ -35,8 +35,8 @@ export function AuthProvider({ children }) {
     return auth.signInWithEmailAndPassword(email, password)
   }
 
-  function nama(name) {
-    return auth.displayName(name)
+  function nama(displayName) {
+    return auth.displayName(displayName)
   }
 
 

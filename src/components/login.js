@@ -30,14 +30,14 @@ export default function Login() {
       setLoading(false)
     }
   return (
-
+    
     <>
-      <div className="bg-white lg:w-4/12 md:6/12 w-10/12 m-auto my-10 shadow-md object-center rounded">
+    <div className="bg-white lg:w-4/12 md:6/12 w-10/12 my-10 shadow-xl justify-items-center m-auto rounded">
         <div className="py-8 px-8 rounded-xl">
           <form onSubmit={handleSubmit}>
             {error && <Alert>{error}</Alert>}
-            <div className="object-none px-28">
-              <img src={logo} className="min-h-full max-h-24 mx-auto" />
+            <div className="object-none">
+              <img src={logo} className="w-40 max-w-sm mx-auto sm:max-w-sm" />
             </div>
             <div className="my-5 text-sm focus-within:text-gray-600">
               <label className="block text-black">Email</label>
@@ -61,7 +61,7 @@ export default function Login() {
 
         </div>
       </div>
-      <p className="text-gray-500 text-center text-md pb-0">Copyright &copy; 2021 PT. Ruang Cipta Teknologi</p>
+      <footer><p className="text-gray-500 text-center text-md pb-0">Copyright &copy; 2021 PT. Ruang Cipta Teknologi</p></footer>
     </>
   )
     }

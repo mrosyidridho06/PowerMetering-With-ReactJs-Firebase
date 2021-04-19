@@ -1,73 +1,37 @@
 import React, { Component } from 'react'
-import Chart from 'chart.js'
-import firebase from 'firebase'
-import {Line} from 'react-chartjs-2'
+import {db} from '../config/fire'
 
-
-
-function fire (numItems) {
-  let fire = firebase.database().ref('PowerMetering/Home-Monitoring/Apparent-Power');
-  let baseTime = new Date('2018-05-01T00:00:00').getTime();
-  let data = [];
-  fire.on('value', function (snapshot) {
-    data.push(snapshot.val())
-  }); console.log(data)
-return data;
+class tescos extends React.Component {
+  state = {
+    Metering: null
+  }
+  componentDidMount(){
+    console.log('mounted')
+    db.collection("Metering").get().then(snapshot => {
+      const moni = []
+      snapshot.forEach(doc => {
+        const data = doc.data()
+        moni.push(data)
+      })
+      this.setState({moni:moni})
+      console.log(snapshot.doc)
+    }).catch(error => console.error())
+  }
+  render() {
+    return (
+      <div>
+        <h1>TES</h1>
+        {this.state.Metering &&
+        this.state.Metering.map(Metering => {
+          return(
+          <div>
+            <p>{Metering.Cospi}</p>
+          </div>
+          )
+        })}
+      </div>
+    )
+  }
 }
 
-function getData() {
-  let data = [];
-  data.push({
-    title: 'COspi',
-    data: fire
-  })
-  return data;
-}
-
-export default class tescos extends Component {
-
-constructor(props){
-  super(props);
-  this.canvaRef = React.createRef();
-}
-
-componentDidUpdate(){
-  this.myChart.data.datasets[0].data = this.data.map
-  this.myChart.update()
-}
-
-componentDidMount(){
-  this.myChart = new Chart(this.canvaRef.current, {
-    type: 'line',
-    options:{
-      scales: {
-        xAxes: [
-          {
-            type: 'time',
-            time: {
-              unit: 'week'
-            }
-          }
-        ],
-        yAxes: [
-          {
-            ticks: {
-              min: 0
-            }
-          }
-        ]
-      }
-    },
-    data: {
-      labels: 'Cospi',
-      datasets: {
-        label: 'Cospi',
-        data: {getData},
-      }
-    }
-  })
-}
-render(){
-    return <canvas ref={this.canvaRef} />
-}
-}
+export default tescos
